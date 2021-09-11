@@ -254,6 +254,7 @@
 <div align="center">
 
 <img src="http://ww1.sinaimg.cn/large/006gOimwly1gud4yj8ordj60pq18jakx02.jpg"/>
+</div>
 
 ## 二、配置web.xml
 
