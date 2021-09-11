@@ -27,7 +27,7 @@
             <td>${emp.employeeId}</td>
             <td>${emp.name}</td>
             <td>${emp.email}</td>
-            <td>${emp.gender}</td>
+            <td>${emp.gender == 1?"男":"女"}</td>
             <td>${emp.departmentId}</td>
             <td>${emp.departmentName}</td>
         </tr>
