@@ -8,6 +8,15 @@
          version="4.0">
   <display-name>Archetype Created Web Application</display-name>
 
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--配置springmvc-->
   <!--配置前端控制器-->
   <servlet>
     <servlet-name>ssm</servlet-name>
