@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    <!--包扫描-->
+    <context:component-scan base-package="com.louis.ssm">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--数据库配置信息-->
+    <context:property-placeholder location="classpath:dbconfig.properties"></context:property-placeholder>
+    <!--配置数据源-->
+    <bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="user" value="${jdbc.user}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+        <property name="driverClass" value="${jdbc.driverClass}"></property>
+        <property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+        <property name="minPoolSize" value="${jdbc.minPoolSize}"></property>
+    </bean>
+
+    <!--配置mybatis操作数据库-->
+
+    <!--配置事务控制，事务管理器，控制数据源里面的关闭和提交-->
+    <bean id="tm" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="c3p0"></property>
+    </bean>
+
+    <!--基于xml配置事务，哪些方法切入事务-->
+    <aop:config>
+        <!--配置切入点-->
+        <aop:pointcut id="myPoint" expression="execution(* com.louis.ssm.service.*.*(..))"/>
+        <aop:advisor advice-ref="myTx" pointcut-ref="myPoint"/>
+    </aop:config>
+
+    <!--配置十五增强，事务属性，事务建议-->
+    <tx:advice id="myTx" transaction-manager="tm">
+        <!--配置事务属性-->
+        <tx:attributes>
+            <tx:method name="*"/>
+        </tx:attributes>
+    </tx:advice>
 </beans>
