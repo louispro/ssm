@@ -1,8 +1,22 @@
-[TOC]
 
 
 
-## 一、导包
+
+## 目录
+
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#one">一、导包</a>
+
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#two">二、配置web.xml</a>
+
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#three">三、配置spring.xml和springmvc.xml</a>
+
+### &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#four">四、整合过程中遇到的问题</a>
+
+<br/>
+
+<hr/>
+
+## <h2 id="one">一、导包<h2>
 
 `pom.xml`内容如下：
 
@@ -260,7 +274,7 @@
 <img src="http://ww1.sinaimg.cn/large/006gOimwly1gud4yj8ordj60pq18jakx02.jpg"/>
 </div>
 
-## 二、配置web.xml
+## <h2 id="two">二、配置web.xml</h2>
 
 主要是在`web.xml`中配置`spring`容器和`springmvc`的前端控制器以及中文乱码和rest风格的请求
 
@@ -332,7 +346,7 @@
 
 ```
 
-## 三、配置`springmvc.xml`和`spring.xml`
+## <h2 id="three">三、配置`springmvc.xml`和`spring.xml`</h2>
 
 `springmvc`和`spring`最好整合成两个容器，这样便于管理组件，分工明确。
 
@@ -482,7 +496,7 @@
 
 
 
-## 四、整合过程中遇到的问题
+## <h2 id="four">四、整合过程中遇到的问题</h2>
 
 ### 4.1、java.lang.NoClassDefFoundError: org/aspectj/weaver/reflect/ReflectionWorld$ReflectionWorldException
 
