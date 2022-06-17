@@ -6,6 +6,9 @@ package com.louis.ssm.bean;
  */
 public class Employee {
 
+    /**
+     *
+     */
     private Integer employeeId;
     private String name;
     private String email;
